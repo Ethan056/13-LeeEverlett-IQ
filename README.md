@@ -24,7 +24,7 @@ Paste Here!
 
 วิธีการใช้งาน (How to run)
 
-Paste Here!
+1.
 
 ผู้พัฒนา (Developer)
 นายศิลปชัย นันทะพันธ์ (ไอคิว)
