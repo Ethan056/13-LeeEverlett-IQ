@@ -1,0 +1,89 @@
+import tkinter as tk
+from tkinter import messagebox
+import time
+import threading
+
+# ตัวแปรควบคุมเธรด
+timer_thread = None
+stop_event = threading.Event()
+timer_running = False
+
+def start_countdown():
+    global timer_thread, timer_running
+
+    if timer_running:
+        return  # กันกดซ้ำ
+
+    try:
+        minutes = float(entry_time.get())
+        seconds = int(minutes * 60)
+        name = entry_name.get()
+
+        if name == "":
+            messagebox.showwarning("Warning", "Please enter your name!")
+            return
+
+        stop_event.clear()
+        timer_running = True
+        label_status.config(text=f"Yo {name}! Countdown started!", fg="blue")
+
+        def run_timer():
+            global timer_running
+            nonlocal seconds
+            while seconds >= 0 and not stop_event.is_set():
+                mins, secs = divmod(seconds, 60)
+                time_format = f"{mins:02d}:{secs:02d}"
+                label_timer.config(text=time_format)
+                time.sleep(1)
+                seconds -= 1
+
+            if not stop_event.is_set():
+                label_status.config(text="WAKE UP NOW!!!", fg="red")
+                messagebox.showinfo("Wake Up!", "Time's up gamer! 🎮")
+
+            timer_running = False
+
+        timer_thread = threading.Thread(target=run_timer)
+        timer_thread.start()
+
+    except ValueError:
+        messagebox.showerror("Error", "Enter a valid number!")
+
+def reset_timer():
+    global timer_running
+    stop_event.set()
+    timer_running = False
+    label_timer.config(text="00:00")
+    label_status.config(text="Timer Reset", fg="black")
+
+# สร้างหน้าต่างหลัก
+root = tk.Tk()
+root.title("Gamer Wake Up Alarm")
+root.geometry("350x320")
+root.resizable(False, False)
+
+tk.Label(root, text="Gamer Wake Up Program", font=("Arial", 16, "bold")).pack(pady=10)
+
+tk.Label(root, text="Your Name:").pack()
+entry_name = tk.Entry(root)
+entry_name.pack(pady=5)
+
+tk.Label(root, text="Set Time (Minutes):").pack()
+entry_time = tk.Entry(root)
+entry_time.pack(pady=5)
+
+label_timer = tk.Label(root, text="00:00", font=("Arial", 30), fg="green")
+label_timer.pack(pady=10)
+
+label_status = tk.Label(root, text="", font=("Arial", 10))
+label_status.pack()
+
+# ปุ่มเริ่ม
+start_button = tk.Button(root, text="Start Countdown", command=start_countdown, bg="black", fg="white")
+start_button.pack(pady=5)
+
+# ปุ่มรีเซต
+reset_button = tk.Button(root, text="Reset", command=reset_timer, bg="red", fg="white")
+reset_button.pack(pady=5)
+
+root.mainloop()
