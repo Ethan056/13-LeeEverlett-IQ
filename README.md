@@ -24,18 +24,24 @@ $${\color{red}I LOVE YOU}$$
 
 ## เครื่องมือที่ใช้ (Tech Stack)
 
-- **ภาษา :** Python
+- **Language :** Python
+- **Libary/Framework:** Tkinter, CustomTkinter
 - **Design Tool :** Canva
 
 ## ตัวอย่างการใช้งาน (Screenshots)
 
-Paste Here!
+<img width="191" height="149" alt="003" src="https://github.com/user-attachments/assets/3e50e33e-0006-498c-8a72-551e7c9591ee" />
+<img width="422" height="848" alt="002" src="https://github.com/user-attachments/assets/762716f9-52c5-4cc8-a38b-73e76ec6bb25" />
+<img width="420" height="853" alt="001" src="https://github.com/user-attachments/assets/022ee78e-9a20-47a6-a23d-52f2a2b8c315" />
+
 
 ## วิธีการใช้งาน (How to run)
 
-1. ใส่ชื่อเล่นของคุณ
-2. เลือกเวลาที่ต้องการตื่น (นาที)
-3. กดปุ่ม Start เพื่อเริ่มจับเวลา
+1. ดาวน์โหลดไฟล์ File.py
+2. รันโปรแกรมผ่าน Terminal/CMD ด้วยคำสั่ง python main.py
+3. ใส่ชื่อเล่นของคุณ
+4. เลือกเวลาที่ต้องการตื่น (นาที)
+5. กดปุ่ม Start เพื่อเริ่มจับเวลา
 
 ## ผู้พัฒนา (Developer)
 * **นายศิลปชัย นันทะพันธ์ (ไอคิว)**
